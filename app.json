@@ -1,0 +1,9 @@
+{
+  "name": "SSH-Telegram-Bot",
+  "description": "SSH Via Telegram",
+  "logo": " ",
+  "keywords": ["telegram", "ssh", "bot"],
+  "repository": "https://github.com/rochonastore/SSH-Telegram-Bot/upload",
+  "stack": "container"
+
+}
