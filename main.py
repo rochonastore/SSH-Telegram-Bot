@@ -11,6 +11,7 @@ import keep_alive
 keep_alive.keep_alive()
 
 bot = telepot.Bot(botToken)
+bot.sendMessage(my_chat_id, "### I'm alive!!!")
 
 s = ''
 prev = '0'
