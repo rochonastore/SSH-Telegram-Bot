@@ -2,10 +2,16 @@ aiohttp
 async-timeout
 attrs
 chardet
+click
+Flask
 idna
+itsdangerous
+Jinja2
+MarkupSafe
 multidict
 pycryptodomex
 telepota
 typing-extensions
 urllib3
+Werkzeug
 yarl
