@@ -29,19 +29,7 @@ def print_thread():
             if prev != s:
                 print("### tried sending message")
                 editable_message = (my_chat_id, message_id)
-                if len(s) > 3000:
-                    try:
-                        bot.editMessageText(msg_identifier=editable_message, text=s)
-                    except:
-                        print(str(traceback.format_exc()))
-                    s = ''
-                elif len(s) > 2000:
-                    try:
-                        bot.editMessageText(msg_identifier=editable_message, text=s)
-                    except:
-                        print(str(traceback.format_exc()))
-                    s = ''
-                elif len(s) < 3000:
+                if len(s) < 3000:
                     try:
                         bot.editMessageText(msg_identifier=editable_message, text=s)
                     except:
@@ -50,6 +38,7 @@ def print_thread():
                     message_id = bot.sendMessage(my_chat_id, s)
                     message_id = message_id['message_id']
                 prev = s
+                # s = ''
         time.sleep(1)
     s = ''
 
@@ -66,7 +55,7 @@ def process_checker():
         if realtime_output:
             # print(realtime_output.strip(), flush=True)
             s += realtime_output
-            time.sleep(2)
+            # time.sleep(2)
 
 def on_chat_message(msg):
     global prog_running, s, message_id, process, prev
