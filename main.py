@@ -41,6 +41,11 @@ def print_thread():
                     except:
                         print(str(traceback.format_exc()))
                     s = ''
+                elif len(s) < 3000:
+                    try:
+                        bot.editMessageText(msg_identifier=editable_message, text=s)
+                    except:
+                        print(str(traceback.format_exc()))
                 else:
                     message_id = bot.sendMessage(my_chat_id, s)
                     message_id = message_id['message_id']
