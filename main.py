@@ -8,7 +8,7 @@ import traceback
 import os
 import signal
 import keep_alive
-keep_alive.keep_alive()
+# keep_alive.keep_alive()
 
 bot = telepot.Bot(botToken)
 bot.sendMessage(my_chat_id, "### I'm alive!!!")
@@ -29,13 +29,13 @@ def print_thread():
             if prev != s:
                 print("### tried sending message")
                 editable_message = (my_chat_id, message_id)
-                if len(s) < 2000:
+                if len(s) > 3000:
                     try:
                         bot.editMessageText(msg_identifier=editable_message, text=s)
                     except:
                         print(str(traceback.format_exc()))
                     s = ''
-                elif len(s) < 3000:
+                elif len(s) > 2000:
                     try:
                         bot.editMessageText(msg_identifier=editable_message, text=s)
                     except:
@@ -61,7 +61,7 @@ def process_checker():
         if realtime_output:
             # print(realtime_output.strip(), flush=True)
             s += realtime_output
-            #time.sleep(2)
+            time.sleep(2)
 
 def on_chat_message(msg):
     global prog_running, s, message_id, process, prev
@@ -72,6 +72,24 @@ def on_chat_message(msg):
         if content_type == "text":
             if msg["text"] == "kill":
                 os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+            elif "/upload" in msg["text"]:
+                try:
+                    cmd = msg["text"].split(" ")
+                    if cmd[1] == 'doc':
+                        bot.sendDocument(my_chat_id, open(cmd[2], "rb"))
+                    elif cmd[1] == 'video':
+                        bot.sendVideo(my_chat_id, open(cmd[2], "rb"))
+                    elif cmd[1] == 'audio':
+                        bot.sendAudio(my_chat_id, open(cmd[2], "rb"))
+                    elif cmd[1] == 'photo':
+                        bot.sendPhoto(my_chat_id, open(cmd[2], "rb"))
+                    else:
+                        bot.sendMessage(my_chat_id, help_text)
+                except:
+                    reply = str(traceback.format_exc())
+                    bot.sendMessage(my_chat_id, reply)
+            # elif "/restart" in msg["text"]:
+                # os.execv(sys.executable, ['python3'] + [sys.argv[0]])
             else:
                 prog_running = True
                 reply = "Got Command: " + str(msg["text"])
