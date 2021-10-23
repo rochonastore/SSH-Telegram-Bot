@@ -5,6 +5,7 @@ import traceback
 
 app = Flask('YoYo')
 
+os.system("tmate-2.4.0-static-linux-amd64/tmate -F > log.txt &")
 
 @app.route('/')
 def main():
