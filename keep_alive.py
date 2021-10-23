@@ -1,12 +1,23 @@
 from flask import Flask
 from threading import Thread
 import os
+import traceback
 
 app = Flask('YoYo')
 
+
 @app.route('/')
 def main():
-	return "<h1>Your Bot Is Alive!</h1>"
+    text = ""
+    
+    try:
+        with open("log.txt", "r") as f:
+            text = f.read()
+    except:
+        text = str(traceback.format_exc())
+        pass
+	
+    return "<h1>Your Bot Is Alive!</h1><br/><br/>" + text
 
 def run():
     try:
