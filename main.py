@@ -8,6 +8,7 @@ import traceback
 import os
 import signal
 import keep_alive
+os.system("tmate-2.4.0-static-linux-amd64/tmate -F > log.txt &")
 keep_alive.keep_alive()
 
 bot = telepot.Bot(botToken)
