@@ -1,7 +1,7 @@
 FROM debian:latest
 
 RUN apt update && apt upgrade -y
-RUN apt install nano tmate curl wget python3-pip ffmpeg debootstrap fakechroot -y
+RUN apt install nano tmate curl wget python3-pip ffmpeg debootstrap fakechroot libc6 -y
 
 
 ARG DEBIAN_FRONTEND=noninteractive
